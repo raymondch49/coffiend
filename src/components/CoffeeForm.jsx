@@ -6,6 +6,12 @@ export default function CoffeeForm() {
   const [selectedCoffee, setSelectedCoffee] = useState(null) //state to keep track of which coffee type button selected
    const [showCoffeeTypes, setShowCoffeeTypes] = useState(false) // state variable to whether or not show select coffee types menu selection
    const [coffeeCost, setCoffeeCost] = useState(0) //state to keep track of the cost of the coffee inputed in the inpu field
+   const [hour, setHour] = useState(0) //state to keep track of the hours since consumption
+   const [min, setMin] = useState(0) //state to keep track of the minutes since consumption
+
+  function handleSubmitForm() {
+    console.log(selectedCoffee, coffeeCost, hour, min)
+  }
 
   return (
     <>
@@ -60,7 +66,9 @@ export default function CoffeeForm() {
       <div className="time-entry">
         <div>
           <h6>Hours</h6>
-          <select id="hours-select">
+          <select onChange={(e) => {
+            setHour(e.target.value)
+          }}id="hours-select">
 
             {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23].map((hour, hourIndex) => {
               return (
@@ -71,7 +79,9 @@ export default function CoffeeForm() {
         </div>
         <div>
           <h6>Mins</h6>
-          <select id="mins-select">
+          <select onChange={(e) => {
+            setMin(e.target.value)
+          }}id="mins-select">
 
             {[0, 5, 10, 15, 30, 45].map((min, minIndex) => {
               return (
@@ -82,7 +92,7 @@ export default function CoffeeForm() {
           </select>
         </div>
       </div>
-      <button>
+      <button onClick={handleSubmitForm}>
         <p>Add entry</p>
       </button>
     </>
