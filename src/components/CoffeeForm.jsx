@@ -1,8 +1,11 @@
 import {coffeeOptions} from '../utils'
 import {useState} from 'react'
+import Modal from './modal'
+import Authentication from './Authentication'
 
-
-export default function CoffeeForm() {
+export default function CoffeeForm(props) {
+  const {isAuthenticated} = props
+  const [showModal, setShowModal] = useState(false)
   const [selectedCoffee, setSelectedCoffee] = useState(null) //state to keep track of which coffee type button selected
    const [showCoffeeTypes, setShowCoffeeTypes] = useState(false) // state variable to whether or not show select coffee types menu selection
    const [coffeeCost, setCoffeeCost] = useState(0) //state to keep track of the cost of the coffee inputed in the inpu field
@@ -10,11 +13,23 @@ export default function CoffeeForm() {
    const [min, setMin] = useState(0) //state to keep track of the minutes since consumption
 
   function handleSubmitForm() {
+    if (!isAuthenticated) {
+      setShowModal(true)
+      return
+    }
     console.log(selectedCoffee, coffeeCost, hour, min)
   }
 
   return (
     <>
+
+    {showModal && (<Modal handleCloseModal={() => {
+        setShowModal(false)
+      }}>
+        <Authentication />
+      </Modal>)}
+
+
     <div className="section-header"> 
       <i className="fa-solid fa-pencil"/>   {/* Can make any self-closing tag in jsx if it cotnains nothing inside it*/}
       <h2>Start tracking Today</h2>

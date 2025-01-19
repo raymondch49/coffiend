@@ -9,7 +9,7 @@ import History from './components/History'
 
 function App() {
   
-  const isAuthenticated = true  /* state that determines if user is authenticated */
+  const isAuthenticated = false  /* state that determines if user is authenticated */
 
   const authenticatedContent = (    /* This is info conditionally renderd if the user is authenticated */
     <>
@@ -21,7 +21,7 @@ function App() {
   return (
     <Layout>
       <Hero />     
-      <CoffeeForm />        {/* Users see the website and can input their information and try to complete the form but will be     
+      <CoffeeForm isAuthenticated={isAuthenticated} />        {/* Users see the website and can input their information and try to complete the form but will be     
                               prompte to sign up and be rejected*/}
       {isAuthenticated && (authenticatedContent)}  {/* If isAuthenticated is true, authenticatedContent is rendered*/}
     </Layout>
