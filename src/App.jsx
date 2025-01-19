@@ -9,7 +9,7 @@ import History from './components/History'
 
 function App() {
   
-  const isAuthenticated = false  /* state that determines if user is authenticated */
+  const isAuthenticated = true  /* state that determines if user is authenticated */
 
   const authenticatedContent = (    /* This is info conditionally renderd if the user is authenticated */
     <>
